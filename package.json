@@ -1,0 +1,24 @@
+{
+  "name": "typescript-tutorial",
+  "version": "1.0.0",
+  "description": "This project has unit tests to demonstrate the functionalities of typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc -w && test-karma",
+    "tsc": "node_modules/.bin/tsc",
+    "tsc-init": "tsc --init",
+    "karma-cli-global": "npm install -g karma-cli",
+    "test-karma": "karma start"
+  },
+  "author": "Ral Itong",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/node": "^8.0.25",
+    "jasmine-core": "^2.8.0",
+    "karma": "^1.7.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "typescript": "^2.4.2"
+  }
+}
