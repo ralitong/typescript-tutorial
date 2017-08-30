@@ -4,16 +4,14 @@
   "description": "This project has unit tests to demonstrate the functionalities of typescript",
   "main": "index.js",
   "scripts": {
-    "test": "tsc -w && test-karma",
-    "tsc": "node_modules/.bin/tsc",
-    "tsc-init": "tsc --init",
-    "karma-cli-global": "npm install -g karma-cli",
-    "test-karma": "karma start"
+    "test": "tsc && concurrently \"karma start\" \"tsc -w\""
   },
   "author": "Ral Itong",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/jasmine": "^2.5.54",
     "@types/node": "^8.0.25",
+    "concurrently": "^3.5.0",
     "jasmine-core": "^2.8.0",
     "karma": "^1.7.0",
     "karma-firefox-launcher": "^1.0.1",
