@@ -87,8 +87,8 @@ describe('This suite describes how functions are used in typescript', function (
         };
         var cardPicker = deck.createCardPicker();
         var pickedCard = cardPicker();
-        expect(pickedCard.card).toBeTruthy();
-        expect(pickedCard.suit).toBeTruthy();
+        expect(pickedCard.card).not.toBeUndefined();
+        expect(pickedCard.suit).not.toBeUndefined();
     });
     it('can also specify the type "this" when passing it to a parameter', function () {
         var deck = {
@@ -109,8 +109,8 @@ describe('This suite describes how functions are used in typescript', function (
         };
         var cardPicker = deck.createCardPicker();
         var pickedCard = cardPicker();
-        expect(pickedCard.card).toBeTruthy();
-        expect(pickedCard.suit).toBeTruthy();
+        expect(pickedCard.card).not.toBeUndefined();
+        expect(pickedCard.suit).not.toBeUndefined();
     });
     it('demonstrates that type void is used to ignore "this" inside a passed function', function () {
         var uiElement = {
@@ -157,11 +157,11 @@ describe('This suite describes how functions are used in typescript', function (
             }
         ];
         var pickedCard1 = myDeck[pickCard(myDeck)];
-        expect(pickedCard1.card).toBeTruthy();
-        expect(pickedCard1.suit).toBeTruthy();
+        expect(pickedCard1.card).not.toBeUndefined();
+        expect(pickedCard1.suit).not.toBeUndefined();
         var pickedCard2 = pickCard(15);
-        expect(pickedCard2.card).toBeTruthy();
-        expect(pickedCard2.suit).toBeTruthy();
+        expect(pickedCard2.card).not.toBeUndefined();
+        expect(pickedCard2.suit).not.toBeUndefined();
     });
     it('demonstrates how typescript overloads the same functions but with different parameters', function () {
         var suits = ["hearts", "spades", "clubs", "diamonds"];
@@ -184,10 +184,10 @@ describe('This suite describes how functions are used in typescript', function (
             { suit: "spades", card: 10 },
             { suit: "hearts", card: 4 }];
         var pickedCard1 = myDeck[pickCard(myDeck)];
-        expect(pickedCard1.card).toBeTruthy();
-        expect(pickedCard1.suit).toBeTruthy();
+        expect(pickedCard1.card).not.toBeUndefined();
+        expect(pickedCard1.suit).not.toBeUndefined();
         var pickedCard2 = pickCard(15);
-        expect(pickedCard2.card).toBeTruthy();
-        expect(pickedCard2.suit).toBeTruthy();
+        expect(pickedCard2.card).not.toBeUndefined();
+        expect(pickedCard2.suit).not.toBeUndefined();
     });
 });
