@@ -61,14 +61,180 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(result4).toBe("Bob Adams");
     });
 
-    it('has support for variable number of parameters called rest', ()=>{
-        function buildName(firstName : string , ...restOfName : string[]) {
+    it('has support for variable number of parameters called rest', () => {
+        function buildName(firstName: string, ...restOfName: string[]) {
             return firstName + " " + restOfName.join(" ");
         }
 
         let employeeName = buildName("Joseph", "Samuel", "Lucas", "Mackinzie");
         expect(employeeName).toBe("Joseph Samuel Lucas Mackinzie");
-    })
+    });
+
+    it('has another example on how to create functions with rest parameters', () => {
+        function buildName(firstName: string, ...restOfName: string[]) {
+            return firstName + " " + restOfName.join(" ");
+        }
+
+        let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
+    });
+
+    it('it explains how using an arrow function to correctly refer "this" inside an anonymous function', () => {
+        let deck = {
+            suits: ["hearts", "spades", "clubs", "diamonds"],
+            cards: Array(52),
+            createCardPicker: function () {
+                return () => {
+                    let pickedCard = Math.floor(Math.random() * 52);
+                    let pickedSuit = Math.floor(pickedCard / 13);
+
+                    return {
+                        suit: this.suits[pickedSuit],
+                        card: pickedCard % 13
+                    };
+                }
+            }
+        }
+
+        let cardPicker = deck.createCardPicker();
+        let pickedCard = cardPicker();
+
+        expect(pickedCard.card).toBeTruthy();
+        expect(pickedCard.suit).toBeTruthy();
+    });
+
+
+    it('can also specify the type "this" when passing it to a parameter', () => {
+        interface Card {
+            suit: string,
+            card: number
+        }
+
+        interface Deck {
+            suits: string[],
+            cards: number[],
+            createCardPicker(this: Deck): () => Card;
+        }
+
+        let deck: Deck = {
+            suits: ["hearts", "spades", "clubs", "diamonds"],
+            cards: Array(52),
+            // NOTE: The function now explicitly specifies that its callee must be of type Deck
+            createCardPicker: function (this: Deck) {
+                return () => {
+                    let pickedCard = Math.floor(Math.random() * 52);
+                    let pickedSuit = Math.floor(pickedCard / 13);
+
+                    return {
+                        suit: this.suits[pickedSuit],
+                        card: pickedCard % 13
+                    }
+                }
+            }
+        }
+        let cardPicker = deck.createCardPicker();
+        let pickedCard = cardPicker();
+
+        expect(pickedCard.card).toBeTruthy();
+        expect(pickedCard.suit).toBeTruthy();
+    });
+
+    it('demonstrates that type void is used to ignore "this" inside a passed function', () => {
+        interface UIElement {
+            addClickListener(onclick: (this: void, e: Event) => void): void;
+        }
+        let uiElement: UIElement = {
+            addClickListener: function (onclick: (this: void, e: Event) => void): void {
+
+            }
+        }
+
+        class Handler {
+            info: string;
+            onClickGood = (e: Event) => {
+                // this.info = e.message;
+            }
+        }
+        let h = new Handler();
+        uiElement.addClickListener(h.onClickGood)
+    });
+
+    it('implements a crude way of overloading functions in typescript', () => {
+        let suits = ["hearts", "spades", "clubs", "diamonds"];
+
+        function pickCard(x: any): any {
+            // Check to see if we're working with an object/array
+            // if so, they gave us the deck and we'll pick the card
+
+            if (typeof x === "object") {
+                let pickedCard = Math.floor(Math.random() * x.length);
+                return pickedCard;
+            }
+            // Otherwise just let them pick the card
+            else if (typeof (x) === "number") {
+                let pickedSuit = Math.floor(x / 13);
+                return { suit: suits[pickedSuit], card: x % 13 }
+            }
+        }
+
+        let myDeck = [
+            {
+                suit: "diamonds",
+                card: 2
+            },
+            {
+                suit: "spades",
+                card: 10
+            },
+            {
+                suit: "hearts",
+                card: 4
+            }
+        ]
+
+        let pickedCard1 = myDeck[pickCard(myDeck)];
+        expect(pickedCard1.card).toBeTruthy();
+        expect(pickedCard1.suit).toBeTruthy();
+
+        let pickedCard2 = pickCard(15);
+        expect(pickedCard2.card).toBeTruthy();
+        expect(pickedCard2.suit).toBeTruthy();
+    });
+
+    it('demonstrates how typescript overloads the same functions but with different parameters', () => {
+        let suits = ["hearts", "spades", "clubs", "diamonds"];
+
+        function pickCard(x: { suit: string, card: number }[]): number;
+        function pickCard(x: number): { suit: string; card: number; };
+        function pickCard(x: any): any {
+            // Check to see if we're working with an object/array
+            // If so, they gave us the deck and we'll pick the card
+
+            if (typeof x == "object") {
+                let pickedCard = Math.floor(Math.random() * x.length);
+                return pickedCard;
+            }
+            // Otherwise just let them pick the card
+            else if (typeof x == "number") {
+                let pickedSuit = Math.floor(x / 13);
+                return {
+                    suit: suits[pickedSuit],
+                    card: x % 13
+                }
+            }
+        }
+        let myDeck = [{ suit: "diamonds", card: 2 },
+        { suit: "spades", card: 10 },
+        { suit: "hearts", card: 4 }];
+        let pickedCard1 = myDeck[pickCard(myDeck)];
+
+        expect(pickedCard1.card).toBeTruthy();
+        expect(pickedCard1.suit).toBeTruthy();
+
+        let pickedCard2 = pickCard(15);
+
+        expect(pickedCard2.card).toBeTruthy();
+        expect(pickedCard2.suit).toBeTruthy();
+    });
 
 
 })
