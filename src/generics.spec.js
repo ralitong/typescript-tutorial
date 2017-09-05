@@ -97,7 +97,7 @@ describe('This suite of tests describe generics in typescript', function () {
             return new c();
         }
     });
-    it('demonstrates how generics can constrain relationships between the constructor, function and the instance of the class', function () {
+    xit('demonstrates how generics can constrain relationships between the constructor, function and the instance of the class', function () {
         var BeeKeeper = (function () {
             function BeeKeeper() {
             }

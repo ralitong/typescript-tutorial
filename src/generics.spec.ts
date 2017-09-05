@@ -121,7 +121,7 @@ describe('This suite of tests describe generics in typescript', () => {
         }
     });
 
-    it('demonstrates how generics can constrain relationships between the constructor, function and the instance of the class', ()=>{
+    xit('demonstrates how generics can constrain relationships between the constructor, function and the instance of the class', ()=>{
         class BeeKeeper {
             hasMask : boolean
         }
