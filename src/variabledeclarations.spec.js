@@ -16,12 +16,12 @@ var __rest = (this && this.__rest) || function (s, e) {
             t[p[i]] = s[p[i]];
     return t;
 };
-describe('This suite describes the ways to declare variables in typescript', function () {
-    it('can declare variables using var just like in javascript', function () {
+describe('Variables', function () {
+    it('can be declared using var just like in javascript', function () {
         var message = 'Hello, World!';
         expect(message).toBe('Hello, World!');
     });
-    it('can declare functions within functions', function () {
+    it('should be able to contain functions within functions', function () {
         function f() {
             var a = 10;
             return function g() {
@@ -32,7 +32,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         var g = f();
         expect(g()).toEqual(11);
     });
-    it('has another sample for declaring functions within functions', function () {
+    it('functions can be declared before it is used', function () {
         function f() {
             var a = 1;
             a = 2;
@@ -45,7 +45,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         }
         expect(f()).toBe(2);
     });
-    it('explains the odd scoping rules of var declarations', function () {
+    it('using var can be called outside its scope', function () {
         // function f(shouldInitialize : boolean) {
         //     if(shouldInitialize)
         //         var x = 10;
@@ -54,7 +54,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         // expect(f(true)).toBe(10);
         // expect(f(false)).toBe(undefined);
     });
-    it('explains another example of odd scoping rules of var', function () {
+    it('using var can have unexpected effects inside nested loops', function () {
         function sumMatrix(matrix) {
             var sum = 0;
             for (var i = 0; i < matrix.length; i++) {
@@ -71,12 +71,12 @@ describe('This suite describes the ways to declare variables in typescript', fun
         ];
         expect(sumMatrix(matrix)).toBe(6);
     });
-    it('also explains this weird behavior of var in a for-loop', function () {
+    it('using var can have unexpected effects when used in asynchronous functions', function () {
         // for(var i = 0; i < 10; i++) {
         //     setTimeout(function(){console.log(i);}, 100 * i);
         // }
     });
-    it('explains how let block scoping solves the problem of var', function () {
+    it('using let should be properly scoped', function () {
         // function f(input : boolean) {
         //     let a = 100;
         //     if(input) {
@@ -88,11 +88,11 @@ describe('This suite describes the ways to declare variables in typescript', fun
         //     return b;
         // }
     });
-    it('explains how variables cannot be used when they are not declared yet', function () {
+    it('using let cannot be used when they are not declared yet', function () {
         // a++;
         // let a;
     });
-    it('explains how some variables can still be used in another scope', function () {
+    it('using let cannot be used inside a function when they are not declared', function () {
         // function foo() {
         //     // okat to capture 'a'
         //     return a;
@@ -102,7 +102,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         // foo();
         // let a;
     });
-    it('explains how var can be redeclared multiple times', function () {
+    it('using var can be declared multiple times', function () {
         function f(x) {
             var x;
             var x;
@@ -110,11 +110,11 @@ describe('This suite describes the ways to declare variables in typescript', fun
                 var x;
         }
     });
-    it('explains how let will not declare the same variable multiple times', function () {
+    it('using let cannot be declared multiple times', function () {
         // let x = 10;
         // let x = 20;
     });
-    it('explains how variables declared with var cannot be declared again with let', function () {
+    it('using var cannot be declared again using let', function () {
         // function f(x : any) {
         //     let x = 100;
         // }
@@ -123,7 +123,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         //     var x = 100;
         // }
     });
-    it('explains that blocked-scoped variable with the same names can be declared in distinct separate blocks', function () {
+    it('using let can be redeclared only if they are not in the same scope', function () {
         function f(condition, x) {
             if (condition) {
                 var x_1 = 100;
@@ -134,7 +134,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(f(false, 0)).toBe(0);
         expect(f(true, 0)).toBe(100);
     });
-    it('explains how a block scoped variable can be captured from a finished scope', function () {
+    it('inside a conditional statement can be captured only if that conditional statement has only one execution flow', function () {
         function theCityThatAlwaysSleeps() {
             var getCity;
             if (true) {
@@ -147,7 +147,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         }
         expect(theCityThatAlwaysSleeps()).toBe('Seattle');
     });
-    it('has support immutable types by using the keyword const', function () {
+    it('should support immutable types using the keyword const', function () {
         var numLivesForCat = 9;
         var kitty = {
             name: 'Aurora',
@@ -166,13 +166,13 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(kitty.name).toBe('Cat');
         expect(kitty.numLives).toBe(8);
     });
-    it('has also support for destructuring', function () {
+    it('should support destructuring', function () {
         var input = [1, 2];
         var first = input[0], second = input[1];
         expect(first).toBe(1);
         expect(second).toBe(2);
     });
-    it('explains how destructuring can be placed inside a function', function () {
+    it('should support destructuring in functions', function () {
         function f(_a) {
             var first = _a[0], second = _a[1];
             expect(first).toBe(1);
@@ -180,14 +180,14 @@ describe('This suite describes the ways to declare variables in typescript', fun
         }
         f([1, 2]);
     });
-    it('explains how destructuring can be used to refer to remaining items in a list', function () {
+    it('should be able to refer to multiple parameter as a destructured rest parameter', function () {
         var _a = [1, 2, 3, 4], first = _a[0], rest = _a.slice(1);
         expect(first).toBe(1);
         expect(rest).toContain(2);
         expect(rest).toContain(3);
         expect(rest).toContain(4);
     });
-    it('has support for object destructuring', function () {
+    it('should support destructuring objects', function () {
         var o = {
             a: "foo",
             b: 12,
@@ -197,7 +197,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(a).toBe("foo");
         expect(b).toBe(12);
     });
-    it('explains how object destructuring can assign an array to refer to the methods and properties of the object', function () {
+    it('should support destructuring methods and properties in an object', function () {
         var o = {
             a: 1,
             b: 3,
@@ -208,7 +208,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         var total = a + passthrough.c.length;
         expect(total).toEqual(4);
     });
-    it('explains how properties can be renamed', function () {
+    it('should support destructuring properties into different names', function () {
         var o = {
             a: 1,
             b: 2
@@ -217,7 +217,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(newName1).toBe(1);
         expect(newName2).toBe(2);
     });
-    it('explains how properties with type can also be renamed', function () {
+    it('should support destructuring object properties wih a type', function () {
         var o = {
             a: "something",
             b: 2
@@ -226,7 +226,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(typeof (a)).toBe("string");
         expect(typeof (b)).toBe("number");
     });
-    it('explains how default values can be assigned if parameters are undefined', function () {
+    it('should be able to assign default values to parameters', function () {
         function keepWholeObject(wholeObject) {
             var a = wholeObject.a, _a = wholeObject.b, b = _a === void 0 ? 1001 : _a;
             expect(a).toBe("something");
@@ -237,7 +237,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
             b: undefined
         });
     });
-    it('explains how destructuring can be used in function parameters', function () {
+    it('should support destructuring function parameters', function () {
         function f(_a) {
             var a = _a.a, b = _a.b;
             expect(a).toBe("something");
@@ -245,7 +245,7 @@ describe('This suite describes the ways to declare variables in typescript', fun
         }
         f({ a: "something", b: 1 });
     });
-    it('explains how spread is opposite to destructuring', function () {
+    it('should be able to spread', function () {
         var first = [1, 2];
         var second = [3, 4];
         var bothPlus = [0].concat(first, second);
@@ -255,14 +255,14 @@ describe('This suite describes the ways to declare variables in typescript', fun
         expect(bothPlus).toContain(3);
         expect(bothPlus).toContain(4);
     });
-    it('explains how objects can also be spread', function () {
+    it('should be able to spread objects', function () {
         var defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
         var search = __assign({}, defaults, { food: "rich" });
         expect(search.ambiance).toBe("noisy");
         expect(search.price).toBe("$$");
         expect(search.food).toBe("rich");
     });
-    it('explains how spread will not support methods of an object', function () {
+    it('should not be able to spread object methods', function () {
         var C = (function () {
             function C() {
                 this.p = 12;

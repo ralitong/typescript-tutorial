@@ -1,5 +1,5 @@
-describe('This suite of tests describe generics in typescript', () => {
-    it('describes how to use a type variable to describe a generic object', () => {
+describe('Generics', () => {
+    it('should make generic functions by using a type symbol', () => {
         function identity<T>(arg: T): T {
             return arg;
         }
@@ -8,7 +8,7 @@ describe('This suite of tests describe generics in typescript', () => {
         expect(output).toBe("mystring");
     });
 
-    it('describes how arrays can be used with type variable', () => {
+    it('should be supported on arrays', () => {
         function loggingIdentiy<T>(arg: Array<T>): Array<T> {
             return arg;
         }
@@ -18,7 +18,7 @@ describe('This suite of tests describe generics in typescript', () => {
         expect(identity).toContain("nyx");
     });
 
-    it('demonstrates how to make an interface with a generic type', () => {
+    it('should also be applied to interfaces', () => {
         function identity<T>(arg: T): T {
             return arg;
         }
@@ -26,7 +26,7 @@ describe('This suite of tests describe generics in typescript', () => {
         let myIdentiy: <T>(arg: T) => T = identity;
     });
 
-    it('demonstrates how different name can be used for the generic type', () => {
+    it('should be able to use any symbol for the generic type', () => {
         function identity<T>(arg: T): T {
             return arg;
         }
@@ -34,7 +34,7 @@ describe('This suite of tests describe generics in typescript', () => {
         let myIdentiy: <U>(arg: U) => U = identity;
     });
 
-    it('demonstrates how the generic type can be used as a call signature', () => {
+    it('should be able to use the generic type as a call signature', () => {
         function identity<T>(arg: T): T {
             return arg;
         }
@@ -42,7 +42,7 @@ describe('This suite of tests describe generics in typescript', () => {
         let myIdentity: { <T>(arg: T): T } = identity;
     });
 
-    it('demonstrates using an interface instead of a call signature', () => {
+    it('should be able to use as an interface as a call signature', () => {
         interface GenericIdentiyFn {
             <T>(arg: T): T;
         }
@@ -54,7 +54,7 @@ describe('This suite of tests describe generics in typescript', () => {
         let myIdentity: GenericIdentiyFn = identity;
     });
 
-    it('demonstrates that the type variable can be used in the whole interface', () => {
+    it('should also be applied to all parts of an interface', () => {
         interface GenericIdentityFn<T> {
             (arg: T): T;
         }
@@ -66,7 +66,7 @@ describe('This suite of tests describe generics in typescript', () => {
         let myIdentity: GenericIdentityFn<number> = identity;
     });
 
-    it('demonstrates how to use types in classes', () => {
+    it('should also be supported in classes', () => {
         class GenericNumber<T> {
             zeroValue: T;
             add: (x: T, y: T) => T;
@@ -77,7 +77,7 @@ describe('This suite of tests describe generics in typescript', () => {
         myGenericNumber.add = function (x, y) { return x + y };
     });
 
-    it('demonstrates how the type used in a class can be different than the context of the class', () => {
+    it('context should be neutral to the ones implementing the generic', () => {
         class GenericNumber<T> {
             zeroValue: T;
             add: (x: T, y: T) => T;
@@ -90,7 +90,7 @@ describe('This suite of tests describe generics in typescript', () => {
         expect(stringNumeric.add(stringNumeric.zeroValue, "test")).toBe("test");
     });
 
-    it('demonstrates how to constrain types with a property', ()=>{
+    it('should be able to constraint parameters with properties expected from the type', ()=>{
         interface Lengthwise {
             length : number;
         }
@@ -104,7 +104,7 @@ describe('This suite of tests describe generics in typescript', () => {
         loggingIdentity({length : 10, value : 3}); // will work because it has length
     });
 
-    it('demonstrates how type can be used to constrain generic parameters', ()=>{
+    it('should support more than one generic type', ()=>{
         function getProperty<T, K extends keyof T>(obj : T, key : K) {
             return obj[key];
         }
@@ -115,13 +115,13 @@ describe('This suite of tests describe generics in typescript', () => {
         // getProperty(x, "m"); will not work since m is not a key of x
     });
 
-    it('demonstrates how a constructor can refer to a type when creating generic factories', ()=>{
+    it('should support specifying a generic type for constructor functions', ()=>{
         function create<T>(c : {new() : T;}) : T {
             return new c();
         }
     });
 
-    xit('demonstrates how generics can constrain relationships between the constructor, function and the instance of the class', ()=>{
+    xit('should support constraining relationships between the constructor, function and the instance of the class', ()=>{
         class BeeKeeper {
             hasMask : boolean
         }
@@ -149,7 +149,4 @@ describe('This suite of tests describe generics in typescript', () => {
         createInstance(Lion).keeper.nametag;
         createInstance(Bee).keeper.hasMask;
     })
-
-
-
 });

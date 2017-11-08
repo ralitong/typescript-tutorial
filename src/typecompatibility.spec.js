@@ -1,5 +1,5 @@
 "use strict";
-describe('Typescript type compatibility', function () {
+describe('Type compatability', function () {
     it('explains that if two types has the same structure then one type can be assigned by the other', function () {
         var Person = (function () {
             function Person() {

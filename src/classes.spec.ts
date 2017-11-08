@@ -1,6 +1,6 @@
-describe('This suite describes how classes are used in typescript', () => {
+describe('Classes', () => {
 
-    it('describes how to create classes in typescript', () => {
+    it('should be able to create a basic object with a method and property', () => {
         class Greeter {
             greeting: string;
             constructor(message: string) {
@@ -17,7 +17,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(greeter.greet()).toBe("Hello, world");
     });
 
-    it("describes how inheritance is done in typescript", () => {
+    it("should support inheritance", () => {
         class Animal {
             name: string;
             constructor(theName: string) {
@@ -59,7 +59,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(tom.move()).toBe("Tommy the Palomino moved 45m.")
     });
 
-    it("explains that properties and methods are public by default", () => {
+    it("properties and methods are public by default", () => {
         class Animal {
             name: string;
             constructor(theName: string) {
@@ -75,7 +75,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(dog.move(1)).toBe('dog moved 1m.')
     });
 
-    it('explains how private keyword works', () => {
+    it('should support the private access control', () => {
         class Animal {
             private name: string;
             constructor(theName: string) {
@@ -87,7 +87,7 @@ describe('This suite describes how classes are used in typescript', () => {
         // cat.name; // Error: 'name' is private
     });
 
-    it('explains how classes of one type could only be assigned by another with the same type', () => {
+    it('should only be assigned to their corresponding type', () => {
         class Animal {
             private name: string;
             constructor(theName: string) {
@@ -116,7 +116,7 @@ describe('This suite describes how classes are used in typescript', () => {
         // animal = employee; // Error: 'Animal' and 'Employee' are not compatible
     });
 
-    it('explains how protected works in typescript', () => {
+    it('should support the protected access control', () => {
         class Person {
             protected name: string;
             constructor(name: string) {
@@ -142,7 +142,7 @@ describe('This suite describes how classes are used in typescript', () => {
         // expect(howard.name); // error because name is protected
     });
 
-    it('explains how constructors can also be protected', () => {
+    it('should support using protect on the constructor', () => {
         class Person {
             protected name: string;
             protected constructor(theName: string) {
@@ -167,7 +167,7 @@ describe('This suite describes how classes are used in typescript', () => {
         // let john = new Person("John"); // not possible because constructor is protected
     });
 
-    it('describes how properties are made readonly', () => {
+    it('should support readonly properties', () => {
 
         class Octopus {
             readonly name: string;
@@ -182,7 +182,7 @@ describe('This suite describes how classes are used in typescript', () => {
         // dad.name = "Man with three piece suit" //Error: name is read only
     });
 
-    it('describes that readonly parameters can be properties of a class', () => {
+    it('should support readonly parameters as properties of a class', () => {
         class Octopus {
             readonly numberOfLegs: number = 8;
             constructor(readonly name: string) {
@@ -195,7 +195,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(octopus.numberOfLegs).toBe(8);
     });
 
-    it('describes how to make accessors in typescript', () => {
+    it('should support accessors', () => {
         let passcode = "secret passcode";
 
         class Employee {
@@ -218,7 +218,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(employee.fullName).toBe("Bob Smith");
     });
 
-    it('can also declare static properties', () => {
+    it('should support static properties', () => {
         class Grid {
             static origin = { x: 0, y: 0 };
             calculateDistanceFromOrigin(point: { x: number, y: number }) {
@@ -244,7 +244,7 @@ describe('This suite describes how classes are used in typescript', () => {
     });
 
 
-    it('has also support for abstract classes', () => {
+    it('should support abstract methods', () => {
         abstract class Department {
             constructor(public name: string) {
 
@@ -280,7 +280,7 @@ describe('This suite describes how classes are used in typescript', () => {
     });
 
 
-    it('describes how constructor functions can be used to instantiate classes', () => {
+    it('should be able to create instances using constructor functions', () => {
         class Greeter {
             static standardGreeting = "Hello, there";
             greeting: string;
@@ -303,7 +303,7 @@ describe('This suite describes how classes are used in typescript', () => {
         expect(greeter2.greet()).toBe("Hey there!");
     });
 
-    it('explains how classes can be used as an interface', () => {
+    it('should be able to act like an interface', () => {
         class Point {
             x: number;
             y: number;

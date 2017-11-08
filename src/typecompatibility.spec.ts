@@ -1,4 +1,4 @@
-describe('Typescript type compatibility', () => {
+describe('Type compatability', () => {
     it('explains that if two types has the same structure then one type can be assigned by the other', () => {
         interface Named {
             name: string;

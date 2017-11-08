@@ -9,8 +9,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-describe('This suite describes how classes are used in typescript', function () {
-    it('describes how to create classes in typescript', function () {
+describe('Classes', function () {
+    it('should be able to create a basic object with a method and property', function () {
         var Greeter = (function () {
             function Greeter(message) {
                 this.greeting = message;
@@ -23,7 +23,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var greeter = new Greeter("world");
         expect(greeter.greet()).toBe("Hello, world");
     });
-    it("describes how inheritance is done in typescript", function () {
+    it("should support inheritance", function () {
         var Animal = (function () {
             function Animal(theName) {
                 this.name = theName;
@@ -63,7 +63,7 @@ describe('This suite describes how classes are used in typescript', function () 
         expect(tom.name).toBe("Tommy the Palomino");
         expect(tom.move()).toBe("Tommy the Palomino moved 45m.");
     });
-    it("explains that properties and methods are public by default", function () {
+    it("properties and methods are public by default", function () {
         var Animal = (function () {
             function Animal(theName) {
                 this.name = theName;
@@ -76,7 +76,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var dog = new Animal('dog');
         expect(dog.move(1)).toBe('dog moved 1m.');
     });
-    it('explains how private keyword works', function () {
+    it('should support the private access control', function () {
         var Animal = (function () {
             function Animal(theName) {
                 this.name = theName;
@@ -86,7 +86,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var cat = new Animal('cat');
         // cat.name; // Error: 'name' is private
     });
-    it('explains how classes of one type could only be assigned by another with the same type', function () {
+    it('should only be assigned to their corresponding type', function () {
         var Animal = (function () {
             function Animal(theName) {
                 this.name = theName;
@@ -112,7 +112,7 @@ describe('This suite describes how classes are used in typescript', function () 
         animal = rhino;
         // animal = employee; // Error: 'Animal' and 'Employee' are not compatible
     });
-    it('explains how protected works in typescript', function () {
+    it('should support the protected access control', function () {
         var Person = (function () {
             function Person(name) {
                 this.name = name;
@@ -135,7 +135,7 @@ describe('This suite describes how classes are used in typescript', function () 
         expect(howard.getElevatorPitch()).toBe("Hello, my name is Howard and I work in Sales");
         // expect(howard.name); // error because name is protected
     });
-    it('explains how constructors can also be protected', function () {
+    it('should support using protect on the constructor', function () {
         var Person = (function () {
             function Person(theName) {
                 this.name = theName;
@@ -157,7 +157,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var howard = new Employee("Howard", "Sales");
         // let john = new Person("John"); // not possible because constructor is protected
     });
-    it('describes how properties are made readonly', function () {
+    it('should support readonly properties', function () {
         var Octopus = (function () {
             function Octopus(theName) {
                 this.numberOfLegs = 8;
@@ -168,7 +168,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var dad = new Octopus("Man with 8 strong legs");
         // dad.name = "Man with three piece suit" //Error: name is read only
     });
-    it('describes that readonly parameters can be properties of a class', function () {
+    it('should support readonly parameters as properties of a class', function () {
         var Octopus = (function () {
             function Octopus(name) {
                 this.name = name;
@@ -180,7 +180,7 @@ describe('This suite describes how classes are used in typescript', function () 
         expect(octopus.name).toBe("octo");
         expect(octopus.numberOfLegs).toBe(8);
     });
-    it('describes how to make accessors in typescript', function () {
+    it('should support accessors', function () {
         var passcode = "secret passcode";
         var Employee = (function () {
             function Employee() {
@@ -204,7 +204,7 @@ describe('This suite describes how classes are used in typescript', function () 
         employee.fullName = "Bob Smith";
         expect(employee.fullName).toBe("Bob Smith");
     });
-    it('can also declare static properties', function () {
+    it('should support static properties', function () {
         var Grid = (function () {
             function Grid(scale) {
                 this.scale = scale;
@@ -226,7 +226,7 @@ describe('This suite describes how classes are used in typescript', function () 
         expect(grid1Distance).toEqual(14.142135623730951);
         expect(grid2Distance).toEqual(2.8284271247461903);
     });
-    it('has also support for abstract classes', function () {
+    it('should support abstract methods', function () {
         var Department = (function () {
             function Department(name) {
                 this.name = name;
@@ -255,7 +255,7 @@ describe('This suite describes how classes are used in typescript', function () 
         expect(department.name).toBe("Accounting and Auditing");
         // expect(department.generateReports()); // not possible because method was not declared on Department abstract class
     });
-    it('describes how constructor functions can be used to instantiate classes', function () {
+    it('should be able to create instances using constructor functions', function () {
         var Greeter = (function () {
             function Greeter() {
             }
@@ -276,7 +276,7 @@ describe('This suite describes how classes are used in typescript', function () 
         var greeter2 = new greeterMaker();
         expect(greeter2.greet()).toBe("Hey there!");
     });
-    it('explains how classes can be used as an interface', function () {
+    it('should be able to act like an interface', function () {
         var Point = (function () {
             function Point() {
             }

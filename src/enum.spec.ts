@@ -1,4 +1,4 @@
-describe('Enums in typescript', () => {
+describe('Enums', () => {
     it('should support operators when assigning values to elements', () => {
         enum FileAccess {
             None,

@@ -1,6 +1,6 @@
-describe('This suite describes how functions are used in typescript', () => {
-    it('describes how functions can have types', () => {
-        let add = (x: number, y: number): number => {
+describe('Functions', () => {
+    it('should support typed parameters', () => {
+        let add = (x: number, y: number) : number => {
             return x + y;
         }
 
@@ -9,17 +9,19 @@ describe('This suite describes how functions are used in typescript', () => {
         }
     });
 
-    it('explains how to write the function type of the function', () => {
+    it('should support having a return type', () => {
         let myAdd: (x: number, y: number) => number =
             function (x: number, y: number): number { return x + y; };
     });
 
-    it('explains how to aid readability by giving parameters name', () => {
+    it('should support to label parameters with a different name', () => {
         let myAdd: (baseValue: number, increment: number) => number =
             function (x: number, y: number): number { return x + y };
+
+            
     });
 
-    it('explains how types are inferred in functions', () => {
+    it('should be able to infer its return type', () => {
         // myAdd has the full function type
         let myAdd = function (x: number, y: number): number {
             return x + y;
@@ -30,7 +32,7 @@ describe('This suite describes how functions are used in typescript', () => {
             function (x, y) { return x + y };
     });
 
-    it('has also support for optional parameters', () => {
+    it('should support optional parameters', () => {
         function buildName(firstName: string, lastName?: string) {
             if (lastName)
                 return firstName + " " + lastName;
@@ -46,7 +48,7 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(result3).toBe("Bob Adams");
     });
 
-    it('it has also support for default values for parameters', () => {
+    it('should be able to specify default values for parameter', () => {
         function buildName(firstName: string, lastName = "Smith") {
             return firstName + " " + lastName;
         }
@@ -61,7 +63,7 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(result4).toBe("Bob Adams");
     });
 
-    it('has support for variable number of parameters called rest', () => {
+    it('should support variable number of parameters as the variable rest', () => {
         function buildName(firstName: string, ...restOfName: string[]) {
             return firstName + " " + restOfName.join(" ");
         }
@@ -70,7 +72,7 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(employeeName).toBe("Joseph Samuel Lucas Mackinzie");
     });
 
-    it('has another example on how to create functions with rest parameters', () => {
+    it('should support rest in specifying the function parameters', () => {
         function buildName(firstName: string, ...restOfName: string[]) {
             return firstName + " " + restOfName.join(" ");
         }
@@ -78,7 +80,7 @@ describe('This suite describes how functions are used in typescript', () => {
         let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
     });
 
-    it('it explains how using an arrow function to correctly refer "this" inside an anonymous function', () => {
+    it('should scope the "this" pointer to the whole object even if it is called inside an anonymous function', () => {
         let deck = {
             suits: ["hearts", "spades", "clubs", "diamonds"],
             cards: Array(52),
@@ -103,7 +105,7 @@ describe('This suite describes how functions are used in typescript', () => {
     });
 
 
-    it('can also specify the type "this" when passing it to a parameter', () => {
+    it('should be able to use "this" pointer when it is passed as a parameter', () => {
         interface Card {
             suit: string,
             card: number
@@ -138,7 +140,7 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(pickedCard.suit).not.toBeUndefined();
     });
 
-    it('demonstrates that type void is used to ignore "this" inside a passed function', () => {
+    it('should ignore "this" pointer when "this:void" is passed as a parameter', () => {
         interface UIElement {
             addClickListener(onclick: (this: void, e: Event) => void): void;
         }
@@ -151,14 +153,14 @@ describe('This suite describes how functions are used in typescript', () => {
         class Handler {
             info: string;
             onClickGood = (e: Event) => {
-                // this.info = e.message;
+                // this.info = e.message; // error
             }
         }
         let h = new Handler();
         uiElement.addClickListener(h.onClickGood)
     });
 
-    it('implements a crude way of overloading functions in typescript', () => {
+    it('should support overloading functions', () => {
         let suits = ["hearts", "spades", "clubs", "diamonds"];
 
         function pickCard(x: any): any {
@@ -200,7 +202,7 @@ describe('This suite describes how functions are used in typescript', () => {
         expect(pickedCard2.suit).not.toBeUndefined();
     });
 
-    it('demonstrates how typescript overloads the same functions but with different parameters', () => {
+    it('should support overloading functions but with different parameters', () => {
         let suits = ["hearts", "spades", "clubs", "diamonds"];
 
         function pickCard(x: { suit: string, card: number }[]): number;

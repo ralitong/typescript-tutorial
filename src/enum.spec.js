@@ -1,5 +1,5 @@
 "use strict";
-describe('Enums in typescript', function () {
+describe('Enums', function () {
     it('should support operators when assigning values to elements', function () {
         var FileAccess;
         (function (FileAccess) {

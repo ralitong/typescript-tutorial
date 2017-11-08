@@ -1,5 +1,5 @@
-describe("This suite of tests describes the interfaces in typescript", ()=>{
-    it('explains how interfaces work using ordinary functions', ()=>{
+describe("Interfaces", ()=>{
+    it('should be implemented using functions', ()=>{
         function printLabel(labelledObj : {label : string}) {
             expect(labelledObj.label).toBe("Size 10 Object");
         }
@@ -8,7 +8,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         printLabel(myObj);
     });
 
-    it('explains how a basic interface works', ()=>{
+    it('should be created using the interface keyword', ()=>{
         interface LabelledValue {
             label : string
         }
@@ -21,7 +21,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         printLabel(myObj);
     });
 
-    it('explains how optional properties can be set in an interface', ()=>{
+    it('should support optional properties', ()=>{
         interface SquareConfig {
             color? : string,
             width? : number
@@ -43,7 +43,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(mySquare.color).toBe("black");
     });
 
-    it('describes how readonly properties interfaces works', ()=>{
+    it('should support readonly properties', ()=>{
         interface Point {
             readonly x : number,
             readonly y : number
@@ -53,7 +53,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         // p1.x = 5; // this will not work
     });
 
-    it('describes how readonly can also be used on arrays', ()=>{
+    it('should support readonly arrays using ReadonlyArray generic type', ()=>{
         let a : number[] = [1, 2, 3, 4];
         let ro : ReadonlyArray<number> = a;
         // ro[0] = 12; // error
@@ -63,7 +63,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         a = ro as number[]; // works because readonly array has been converted to an ordinary number[] array
     });
 
-    it('describes how interfaces can be declared as functions', ()=>{
+    it('should also support implementation in functions', ()=>{
         interface SearchFunc {
             (source : string, subString : string): boolean;
         }
@@ -77,7 +77,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(mySearch('abcdefgh', 'abcde')).toBe(true);
     });
 
-    it('describes how interfaces can be indexable just like arrays', ()=>{
+    it('should be indexable arrays', ()=>{
         interface StringArray {
             [index : number] : string
         }
@@ -88,13 +88,13 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(myArray[0]).toBe("Bob");
     });
 
-    it('describes that when using multi-indexers, the second index type should be the sub-type of the first indexer', ()=>{
+    it('using multi-indexers; the second index type should be the sub-type of the first indexer', ()=>{
         class Animal {
             name : string
         }
 
         class Dog extends Animal {
-            breed : string
+            breed : number
         }
 
         interface NotOkay {
@@ -103,7 +103,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         }
     });
 
-    it('describes that properties of an indexable interface should be the sub-type of the indexer', ()=>{
+    it('properties should be the sub-type of the return type of the indexer', ()=>{
         interface NumberDictionary {
             [index : string] : number;
             length  : number // ok, length is a number
@@ -111,7 +111,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         }
     });
 
-    it('describes how readonly indexable interfaces can be implemented', ()=>{
+    it('should support readonly indexers', ()=>{
         interface ReadonlyStringArray {
             readonly [index : number] : string
         }
@@ -120,7 +120,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         // myArray[2] = "Mallory"; // error
     });
 
-    it('describe how an interface can be implemented', ()=>{
+    it('should support implementation using the keyword implement', ()=>{
         interface ClockInterface {
             currentTime : Date;
         }
@@ -136,7 +136,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         let clock : ClockInterface = new Clock(1, 30);
     });
 
-    it('describes how methods can be implemented on a class from an interface', ()=>{
+    it('should support methods without a body', ()=>{
         interface ClockInterface {
             currentTime : Date;
             setTime(d : Date) : void;
@@ -144,7 +144,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
 
         class Clock implements ClockInterface {
             currentTime : Date;
-            setTime(d : Date) {
+            setTime(d : Date)  {
                 this.currentTime = d;
             }
 
@@ -159,7 +159,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(clock.currentTime).toEqual(today);
     });
 
-    it('explains how static methods should be properly implemented so that it can be used in an implementing class', ()=> {
+    it('implementing classes should not be able to use constructor interfaces directly', ()=> {
         // interface ClockConstructor {
         //     new (hour : number, minute : number);
         // } 
@@ -170,7 +170,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         // }
     });
 
-    it('explains how a constructor could be placed in a seperate interface to create instances of other interfaces', ()=> {
+    it('should be created with a constructor function only if that constructor function is used by creator or factory function', ()=> {
         interface ClockConstructor {
             new (hour : number, minute : number) : ClockInterface;
         }
@@ -214,7 +214,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         let analog = createClock(AnalogClock, 1, 30);
     });
 
-    it('explains how interfaces can be extended', ()=> {
+    it('should support extension', ()=> {
         interface Shape {
             color : string
         }
@@ -231,7 +231,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(square.sideLength).toBe(10);
     });
 
-    it('explains another example of extending interfaces', ()=>{
+    it('should be able to extend using other interfaces', ()=>{
         interface Shape {
             color : string;
         }
@@ -254,7 +254,7 @@ describe("This suite of tests describes the interfaces in typescript", ()=>{
         expect(square.penWidth).toBe(5.0);
     });
 
-    it('explains how interfaces can extend classes', ()=> {
+    it('should be able to extend using classes', ()=> {
         class Control {
             private state : any;
         }

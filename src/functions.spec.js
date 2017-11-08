@@ -1,6 +1,6 @@
 "use strict";
-describe('This suite describes how functions are used in typescript', function () {
-    it('describes how functions can have types', function () {
+describe('Functions', function () {
+    it('should support typed parameters', function () {
         var add = function (x, y) {
             return x + y;
         };
@@ -8,13 +8,13 @@ describe('This suite describes how functions are used in typescript', function (
             return x + y;
         };
     });
-    it('explains how to write the function type of the function', function () {
+    it('should support having a return type', function () {
         var myAdd = function (x, y) { return x + y; };
     });
-    it('explains how to aid readability by giving parameters name', function () {
+    it('should support to label parameters with a different name', function () {
         var myAdd = function (x, y) { return x + y; };
     });
-    it('explains how types are inferred in functions', function () {
+    it('should be able to infer its return type', function () {
         // myAdd has the full function type
         var myAdd = function (x, y) {
             return x + y;
@@ -22,7 +22,7 @@ describe('This suite describes how functions are used in typescript', function (
         // The parameters 'x' and 'y' have the type number
         var yourAdd = function (x, y) { return x + y; };
     });
-    it('has also support for optional parameters', function () {
+    it('should support optional parameters', function () {
         function buildName(firstName, lastName) {
             if (lastName)
                 return firstName + " " + lastName;
@@ -35,7 +35,7 @@ describe('This suite describes how functions are used in typescript', function (
         expect(result1).toBe("Bob");
         expect(result3).toBe("Bob Adams");
     });
-    it('it has also support for default values for parameters', function () {
+    it('should be able to specify default values for parameter', function () {
         function buildName(firstName, lastName) {
             if (lastName === void 0) { lastName = "Smith"; }
             return firstName + " " + lastName;
@@ -48,7 +48,7 @@ describe('This suite describes how functions are used in typescript', function (
         expect(result2).toBe("Bob Smith");
         expect(result4).toBe("Bob Adams");
     });
-    it('has support for variable number of parameters called rest', function () {
+    it('should support variable number of parameters as the variable rest', function () {
         function buildName(firstName) {
             var restOfName = [];
             for (var _i = 1; _i < arguments.length; _i++) {
@@ -59,7 +59,7 @@ describe('This suite describes how functions are used in typescript', function (
         var employeeName = buildName("Joseph", "Samuel", "Lucas", "Mackinzie");
         expect(employeeName).toBe("Joseph Samuel Lucas Mackinzie");
     });
-    it('has another example on how to create functions with rest parameters', function () {
+    it('should support rest in specifying the function parameters', function () {
         function buildName(firstName) {
             var restOfName = [];
             for (var _i = 1; _i < arguments.length; _i++) {
@@ -69,7 +69,7 @@ describe('This suite describes how functions are used in typescript', function (
         }
         var buildNameFun = buildName;
     });
-    it('it explains how using an arrow function to correctly refer "this" inside an anonymous function', function () {
+    it('should scope the "this" pointer to the whole object even if it is called inside an anonymous function', function () {
         var deck = {
             suits: ["hearts", "spades", "clubs", "diamonds"],
             cards: Array(52),
@@ -90,7 +90,7 @@ describe('This suite describes how functions are used in typescript', function (
         expect(pickedCard.card).not.toBeUndefined();
         expect(pickedCard.suit).not.toBeUndefined();
     });
-    it('can also specify the type "this" when passing it to a parameter', function () {
+    it('should be able to use "this" pointer when it is passed as a parameter', function () {
         var deck = {
             suits: ["hearts", "spades", "clubs", "diamonds"],
             cards: Array(52),
@@ -112,7 +112,7 @@ describe('This suite describes how functions are used in typescript', function (
         expect(pickedCard.card).not.toBeUndefined();
         expect(pickedCard.suit).not.toBeUndefined();
     });
-    it('demonstrates that type void is used to ignore "this" inside a passed function', function () {
+    it('should ignore "this" pointer when "this:void" is passed as a parameter', function () {
         var uiElement = {
             addClickListener: function (onclick) {
             }
@@ -120,7 +120,7 @@ describe('This suite describes how functions are used in typescript', function (
         var Handler = (function () {
             function Handler() {
                 this.onClickGood = function (e) {
-                    // this.info = e.message;
+                    // this.info = e.message; // error
                 };
             }
             return Handler;
@@ -128,7 +128,7 @@ describe('This suite describes how functions are used in typescript', function (
         var h = new Handler();
         uiElement.addClickListener(h.onClickGood);
     });
-    it('implements a crude way of overloading functions in typescript', function () {
+    it('should support overloading functions', function () {
         var suits = ["hearts", "spades", "clubs", "diamonds"];
         function pickCard(x) {
             // Check to see if we're working with an object/array
@@ -163,7 +163,7 @@ describe('This suite describes how functions are used in typescript', function (
         expect(pickedCard2.card).not.toBeUndefined();
         expect(pickedCard2.suit).not.toBeUndefined();
     });
-    it('demonstrates how typescript overloads the same functions but with different parameters', function () {
+    it('should support overloading functions but with different parameters', function () {
         var suits = ["hearts", "spades", "clubs", "diamonds"];
         function pickCard(x) {
             // Check to see if we're working with an object/array

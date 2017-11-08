@@ -1,10 +1,10 @@
 "use strict";
-describe("this suite describes the basic types of typescript", function () {
-    it("uses let to declare variables", function () {
+describe("Types", function () {
+    it("should be declared using let", function () {
         var isDone = false;
         expect(isDone).toBe(false);
     });
-    it("has support for numeric types", function () {
+    it("should have support for numeric types", function () {
         var decimal = 6;
         var hex = 0xf00d;
         var binary = 10;
@@ -14,39 +14,39 @@ describe("this suite describes the basic types of typescript", function () {
         expect(binary).toEqual(10);
         expect(octal).toEqual(484);
     });
-    it('has support for string types', function () {
+    it('should have support for string types', function () {
         var color = 'blue';
         color = 'red';
     });
-    it('uses backticks to create strings with multiple lines', function () {
+    it('should create strings with multiple lines using backticks', function () {
         var averylongtext = "The quick brown fox\njumps over the lazy dog";
         expect(averylongtext).toEqual('The quick brown fox\njumps over the lazy dog');
     });
-    it('uses backticks to create templates inside the string', function () {
+    it('should display variables inside a string using templates', function () {
         var fullName = "Bob Bobbington";
         var age = 37;
         var sentence = "Hello, my name is " + fullName + ".";
         expect(sentence).toBe('Hello, my name is Bob Bobbington.');
     });
-    it('has support for arrays', function () {
+    it('should have support for arrays', function () {
         var list = [1, 2, 3];
         expect(list).toContain(1);
         expect(list).toContain(2);
         expect(list).toContain(3);
     });
-    it('has support for generic array types', function () {
+    it('should support generic array types', function () {
         var list = [1, 2, 3];
         expect(1);
         expect(2);
         expect(3);
     });
-    it('has support for tuples', function () {
+    it('should support tuples', function () {
         var x;
         x = ['hello', 10];
         expect(x[0]).toBe('hello');
         expect(x[1]).toBe(10);
     });
-    it('has support for enums', function () {
+    it('should support enums', function () {
         var Color;
         (function (Color) {
             Color[Color["Red"] = 1] = "Red";
@@ -59,13 +59,13 @@ describe("this suite describes the basic types of typescript", function () {
         expect(c).toEqual(Color.Green);
         expect(r).toEqual('Green');
     });
-    it('has support for dynamic types called any', function () {
+    it('should support dynamic types by using the type "any"', function () {
         var notSure = 4;
         notSure = "maybe a string instead";
         notSure = false;
         expect(notSure).toBe(false);
     });
-    it('can use any in arrays', function () {
+    it('should support the type "any" in arrays', function () {
         var list = [1, true, 'free'];
         list[1] = 100;
         expect(list).toContain(1);
@@ -73,19 +73,19 @@ describe("this suite describes the basic types of typescript", function () {
         expect(list).toContain('free');
         expect(list).not.toContain(true);
     });
-    it('has also support for void types', function () {
+    it('should suppport void types', function () {
         function warnUser() {
         }
         var receiver = warnUser();
         expect(receiver).toBe(undefined);
     });
-    it('defines that null and undefined have their own types', function () {
+    it('should let null and undefined be seperate types', function () {
         var u = undefined;
         var n = null;
         expect(u).toBe(undefined);
         expect(n).toBe(null);
     });
-    it('it has support for exceptions', function () {
+    it('should support exceptions', function () {
         var error = function (message) {
             throw new Error(message);
         };
@@ -94,18 +94,18 @@ describe("this suite describes the basic types of typescript", function () {
         };
         expect(function () { fail(); }).toThrowError("Something failed");
     });
-    xit('uses never for infinite loops', function () {
+    xit('should support the use of "never" when indicating an endless loop', function () {
         function infinite() {
             while (true) { }
         }
         // expect(()=>{infinite()}).toBe(never);
     });
-    it('has support for type assertions', function () {
+    it('should support type assertions like typecasting in Java', function () {
         var someValue = 'this is a string';
         var strLength = someValue.length;
         expect(strLength).toBe(16);
     });
-    it('can also as for type assertions', function () {
+    it('should support using "as" when asserting a type', function () {
         var someValue = 'this is a string';
         var strLength = someValue.length;
         expect(strLength).toBe(16);

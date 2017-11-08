@@ -9,22 +9,22 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-describe("This suite of tests describes the interfaces in typescript", function () {
-    it('explains how interfaces work using ordinary functions', function () {
+describe("Interfaces", function () {
+    it('should be implemented using functions', function () {
         function printLabel(labelledObj) {
             expect(labelledObj.label).toBe("Size 10 Object");
         }
         var myObj = { size: 10, label: "Size 10 Object" };
         printLabel(myObj);
     });
-    it('explains how a basic interface works', function () {
+    it('should be created using the interface keyword', function () {
         function printLabel(labelledObj) {
             expect(labelledObj.label).toBe("Size 10 Object");
         }
         var myObj = { size: 10, label: "Size 10 Object" };
         printLabel(myObj);
     });
-    it('explains how optional properties can be set in an interface', function () {
+    it('should support optional properties', function () {
         function createSqure(config) {
             var newSquare = { color: "white", area: 100 };
             if (config.color)
@@ -37,11 +37,11 @@ describe("This suite of tests describes the interfaces in typescript", function 
         expect(mySquare.area).toBe(100);
         expect(mySquare.color).toBe("black");
     });
-    it('describes how readonly properties interfaces works', function () {
+    it('should support readonly properties', function () {
         var p1 = { x: 10, y: 20 };
         // p1.x = 5; // this will not work
     });
-    it('describes how readonly can also be used on arrays', function () {
+    it('should support readonly arrays using ReadonlyArray generic type', function () {
         var a = [1, 2, 3, 4];
         var ro = a;
         // ro[0] = 12; // error
@@ -50,7 +50,7 @@ describe("This suite of tests describes the interfaces in typescript", function 
         // a = ro // error
         a = ro; // works because readonly array has been converted to an ordinary number[] array
     });
-    it('describes how interfaces can be declared as functions', function () {
+    it('should also support implementation in functions', function () {
         var mySearch;
         mySearch = function (src, sub) {
             var result = src.search(sub);
@@ -58,12 +58,12 @@ describe("This suite of tests describes the interfaces in typescript", function 
         };
         expect(mySearch('abcdefgh', 'abcde')).toBe(true);
     });
-    it('describes how interfaces can be indexable just like arrays', function () {
+    it('should be indexable arrays', function () {
         var myArray;
         myArray = ["Bob", "Fred"];
         expect(myArray[0]).toBe("Bob");
     });
-    it('describes that when using multi-indexers, the second index type should be the sub-type of the first indexer', function () {
+    it('using multi-indexers; the second index type should be the sub-type of the first indexer', function () {
         var Animal = (function () {
             function Animal() {
             }
@@ -77,13 +77,13 @@ describe("This suite of tests describes the interfaces in typescript", function 
             return Dog;
         }(Animal));
     });
-    it('describes that properties of an indexable interface should be the sub-type of the indexer', function () {
+    it('properties should be the sub-type of the return type of the indexer', function () {
     });
-    it('describes how readonly indexable interfaces can be implemented', function () {
+    it('should support readonly indexers', function () {
         var myArray = ["Alice", "Bob"];
         // myArray[2] = "Mallory"; // error
     });
-    it('describe how an interface can be implemented', function () {
+    it('should support implementation using the keyword implement', function () {
         var Clock = (function () {
             function Clock(h, m) {
                 expect(h).toBe(1);
@@ -93,7 +93,7 @@ describe("This suite of tests describes the interfaces in typescript", function 
         }());
         var clock = new Clock(1, 30);
     });
-    it('describes how methods can be implemented on a class from an interface', function () {
+    it('should support methods without a body', function () {
         var Clock = (function () {
             function Clock(h, m) {
             }
@@ -107,7 +107,7 @@ describe("This suite of tests describes the interfaces in typescript", function 
         clock.setTime(today);
         expect(clock.currentTime).toEqual(today);
     });
-    it('explains how static methods should be properly implemented so that it can be used in an implementing class', function () {
+    it('implementing classes should not be able to use constructor interfaces directly', function () {
         // interface ClockConstructor {
         //     new (hour : number, minute : number);
         // } 
@@ -116,7 +116,7 @@ describe("This suite of tests describes the interfaces in typescript", function 
         //     constructor(h : number, m : number);
         // }
     });
-    it('explains how a constructor could be placed in a seperate interface to create instances of other interfaces', function () {
+    it('should be created with a constructor function only if that constructor function is used by creator or factory function', function () {
         function createClock(ctor, hour, minute) {
             return new ctor(hour, minute);
         }
@@ -145,14 +145,14 @@ describe("This suite of tests describes the interfaces in typescript", function 
         var digital = createClock(DigitalClock, 1, 30);
         var analog = createClock(AnalogClock, 1, 30);
     });
-    it('explains how interfaces can be extended', function () {
+    it('should support extension', function () {
         var square = {};
         square.color = "blue";
         square.sideLength = 10;
         expect(square.color).toBe("blue");
         expect(square.sideLength).toBe(10);
     });
-    it('explains another example of extending interfaces', function () {
+    it('should be able to extend using other interfaces', function () {
         var square = {};
         square.color = "blue";
         square.sideLength = 10;
@@ -161,7 +161,7 @@ describe("This suite of tests describes the interfaces in typescript", function 
         expect(square.sideLength).toBe(10);
         expect(square.penWidth).toBe(5.0);
     });
-    it('explains how interfaces can extend classes', function () {
+    it('should be able to extend using classes', function () {
         var Control = (function () {
             function Control() {
             }
