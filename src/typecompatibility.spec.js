@@ -32,7 +32,7 @@ describe('Type compatability', function () {
         x = y; // OK
         // y = x; // x is not compativle because it is missing the location return type
     });
-    it('', function () {
+    it('demonstrates the problem with rest parameters with no specific type that is used in a callback', function () {
         function invokeLater(args, callback) {
             /* ... Invoke callback with 'args' ... */
         }
@@ -40,5 +40,55 @@ describe('Type compatability', function () {
         invokeLater([1, 2], function (x, y) { return console.log(x + ", " + y); });
         // Confusing (x and y are actually required) and undiscoverable
         invokeLater([1, 2], function (x, y) { return console.log(x + ", " + y); });
+    });
+    it('demonstrates how enums from one type cannot be assigned to another enum type', function () {
+        var Status;
+        (function (Status) {
+            Status[Status["Ready"] = 0] = "Ready";
+            Status[Status["Waiting"] = 1] = "Waiting";
+        })(Status || (Status = {}));
+        ;
+        var Color;
+        (function (Color) {
+            Color[Color["Red"] = 0] = "Red";
+            Color[Color["Blue"] = 1] = "Blue";
+            Color[Color["Green"] = 2] = "Green";
+        })(Color || (Color = {}));
+        ;
+        var status = Status.Ready;
+        // status = Color.Green; not possible
+    });
+    it('demonstrates how two types with different names can be assigned with each other, static methods, properties and constructor does not matter', function () {
+        var Animal = (function () {
+            function Animal(name, numFeet) {
+            }
+            return Animal;
+        }());
+        var Size = (function () {
+            function Size(numFeet) {
+            }
+            return Size;
+        }());
+        var a;
+        var s;
+        // a = s; OK: but typescript will throw a warning because s has no instance
+        // s = a; OK: but typescript will throw a warning because b has no instance
+    });
+    it('demonstrates how interfaces with no methods but with different types can be compatible with each other', function () {
+        var x;
+        var y;
+        // x = y; // okay, y matches structure of x. will not work though because y has no instance;
+    });
+    it('demonstrates that non-empty interfaces with different type implementations cannot be compatible with each other', function () {
+        var a;
+        var b;
+        // a = b; // a and b have different types so it will not work
+    });
+    it('demonstrates that if no type is specified in for the type parameters, the type any is used', function () {
+        // let identity = function<T>(x :T) : T{
+        // }
+        // let reverse = function<U> (y : U) : U {
+        // }
+        // identity = reverse // Okay because (x : any) => any matches (y : any) => any
     });
 });
