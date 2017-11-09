@@ -1,14 +1,14 @@
 describe("Exercises", () => {
-    it(`construct a 5 line sentence using tilde`, () => {
+    it(`construct a 5 line sentence using tilde, 1 point`, () => {
 
     });
 
-    it(`construct a sentence using tilde and a variable inside`, () => {
+    it(`construct a sentence using tilde and a variable inside 1 point`, () => {
         let name = "name";
         // expect(sentence).toBe("My name is " + name);
     });
 
-    it(`implement interfaces using shapes, uncomment and make the test pass`, () => {
+    it(`implement interfaces using shapes, uncomment and make the test pass, 2 points`, () => {
 
         // let circle: Shape = new Circle(2);
         // let square: Shape = new Square(2);
@@ -22,7 +22,7 @@ describe("Exercises", () => {
         // expect(cylinder.area()).toBe(50.27);
     });
 
-    it('create an enum of planets, uncomment and make the test pass', () => {
+    it('create an enum of planets, uncomment and make the test pass, 1 point', () => {
 
         // expect(Planet.MERCURY.toString()).toBe("mercury");
         // expect(Planet.VENUS.toString()).toBe("venus");
@@ -35,7 +35,7 @@ describe("Exercises", () => {
         // expect(Planet.PLUTO.toString()).toBe("pluto");
     });
 
-    it('create a person object with optional parameters, uncomment and make the test pass', () => {
+    it('create a person object with optional parameters, uncomment and make the test pass, 2 points', () => {
         //  let person = new Person();
 
         // expect(person.firstname).toBe("Jane");
@@ -50,7 +50,7 @@ describe("Exercises", () => {
         // expect(person.lastname).toBe("Potter");
     });
 
-    it('create a broadcaster and listener objects, uncomment and make the test pass', () => {
+    it('create a broadcaster and listener objects, uncomment and make the test pass, 2 points', () => {
 
         // let Broadcaster broadcaster = new BroadCaster();
         // let Listener listenerA = new Listener();
@@ -72,13 +72,13 @@ describe("Exercises", () => {
         // expect(listenerC.getBroadcasted()).toBe('Peaches');
     });
 
-    it('deconstruct an array with first and second and the rest the elements as rest', () => {
+    it('deconstruct an array with first and second and the rest the elements as rest, 1 point', () => {
         // expect(first).toBe('Red');
         // expect(second).toBe('Blue');
         // expect(rest).toEqual(['Yellow','Orange','Green']);
     });
 
-    it('create a generic stack, uncomment and make the test pass', () => {
+    it('create a generic stack, uncomment and make the test pass, 2 points', () => {
         //  let stack = new Stack<string>();
 
         // stack.push("a");
@@ -91,7 +91,7 @@ describe("Exercises", () => {
         // expect(stack.pop()).toBe(undefined);
     });
 
-        
+
 
 
 
