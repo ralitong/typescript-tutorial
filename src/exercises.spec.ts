@@ -1,9 +1,9 @@
 describe("Exercises", () => {
-    it(`construct a 5 line sentence using tilde, 1 point`, () => {
+    it(`construct a 5 line sentence using backtick, 1 point`, () => {
 
     });
 
-    it(`construct a sentence using tilde and a variable inside 1 point`, () => {
+    it(`construct a sentence using backtick and a variable inside 1 point`, () => {
         let name = "name";
         // expect(sentence).toBe("My name is " + name);
     });
@@ -52,10 +52,10 @@ describe("Exercises", () => {
 
     it('create a broadcaster and listener objects, uncomment and make the test pass, 2 points', () => {
 
-        // let Broadcaster broadcaster = new BroadCaster();
-        // let Listener listenerA = new Listener();
-        // let Listener listenerB = new Listener();
-        // let Listener listenerC = new Listener();
+        // let broadcaster : BroadCaster = new BroadCaster();
+        // let listenerA  : Listener = new Listener();
+        // let listenerB : Listener = new Listener();
+        // let listenerC : Listener = new Listener();
 
         // broadcaster.addSubscriber(listenerA);
         // broadcaster.addSubscriber(listenerB);
